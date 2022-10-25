@@ -1,37 +1,74 @@
 #ifndef DEFINES_H
 #define DEFINES_H
 
-#define LED_wPort PORTB
-#define LED_rPort PINB
-#define LED_bit 5
+#define Velocity_Pot_wPort PORTC
+#define Velocity_Pot_rPort PINC
+#define Velocity_Pot_bit 0
 
-#define TRAVA_wPort PORTB
-#define TRAVA_rPort PINB
-#define TRAVA_bit 4
+#define Left_light_sensor_wPort PORTC
+#define Left_light_sensor_rPort PINC
+#define Left_light_sensor_bit 1
 
-#define MOTOR_wPort PORTB
-#define MOTOR_rPort PINB
-#define MOTOR_bit 3
+#define Right_light_sensor_wPort PORTC
+#define Right_light_sensor_rPort PINC
+#define Right_light_sensor_bit 2
 
-#define SENSOR_wPort PORTC
-#define SENSOR_rPort PINC
-#define SENSOR_bit 4
+#define Temperature_sensor_wPort PORTC
+#define Temperature_sensor_rPort PINC
+#define Temperature_sensor_bit 3
 
-#define bimanual_1_wPort PORTD
-#define bimanual_1_rPort PIND
-#define bimanual_1_bit 2
+#define Force_sensor_wPort PORTC
+#define Force_sensor_rPort PINC
+#define Force_sensor_bit 4
 
-#define bimanual_2_wPort PORTD
-#define bimanual_2_rPort PIND
-#define bimanual_2_bit 3
+#define Battery_voltage_wPort PORTC
+#define Battery_voltage_rPort PINC
+#define Battery_voltage_bit 5
 
-#define start_wPort PORTD
-#define start_rPort PIND
-#define start_bit 7
+#define PWM_IN4_wPort PORTB
+#define PWM_IN4_rPort PINB
+#define PWM_IN4_bit 2
 
-#define Manual_wPort PORTB
-#define Manual_rPort PINB
-#define Manual_bit 2
+#define PWM_Servo_wPort PORTB
+#define PWM_Servo_rPort PINB
+#define PWM_Servo_bit 3
+
+#define Você_pode_usar_nomes_hiper_ultra_mega_blaster_longos_wPort PORTB
+#define Você_pode_usar_nomes_hiper_ultra_mega_blaster_longos_rPort PINB
+#define Você_pode_usar_nomes_hiper_ultra_mega_blaster_longos_bit 4
+
+#define Switch_button_wPort PORTD
+#define Switch_button_rPort PIND
+#define Switch_button_bit 2
+
+#define LED1_wPort PORTD
+#define LED1_rPort PIND
+#define LED1_bit 3
+
+#define LED2_wPort PORTD
+#define LED2_rPort PIND
+#define LED2_bit 4
+
+#define PWM_IN1_wPort PORTD
+#define PWM_IN1_rPort PIND
+#define PWM_IN1_bit 5
+
+#define PWM_IN2_wPort PORTD
+#define PWM_IN2_rPort PIND
+#define PWM_IN2_bit 6
+
+#define A_wPort PORTD
+#define A_rPort PIND
+#define A_bit 7
+
+#define Pequenos_também_olha_wPort PORTB
+#define Pequenos_também_olha_rPort PINB
+#define Pequenos_também_olha_bit 0
+
+#define PWM_IN3_wPort PORTB
+#define PWM_IN3_rPort PINB
+#define PWM_IN3_bit 1
+
 
 #define SetBit(RES, BIT)(RES |= (1 << BIT)) // Por BIT em nível alto
 #define ClrBit(RES, BIT)(RES &= ~ (1 << BIT)) // Por BIT em nível baixo
