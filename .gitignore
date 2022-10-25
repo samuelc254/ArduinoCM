@@ -1,2 +1,2 @@
-.vscode/**
+.vscode*
 example/ArduinoSW.exe
