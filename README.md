@@ -1,2 +1,2 @@
-# ArduinoSW
-A setup wizard for Arduino registers 
+# ArduinoCM
+A CPU mapper for Arduino/AVR microcontrollers registers
