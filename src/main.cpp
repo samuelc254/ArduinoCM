@@ -36,6 +36,7 @@ int main(int argc, char *argv[])
         string arg1(argv[1]);
         if (arg1 == "-json")
         {
+            startMap();
             cout << "json mode\n";
 
             Json::Value setupJson;
@@ -88,225 +89,56 @@ void removeAccents(string str, char *out)
     {
         string strInterval = str.substr(i, 2);
 
-        if (strInterval == "á")
+        if (specialCharacters.find(strInterval) != specialCharacters.end())
         {
-            out[i - accents] = 'a';
-            accents++;
-            i++;
-        }
-        else if (strInterval == "à")
-        {
-            out[i - accents] = 'a';
-            accents++;
-            i++;
-        }
-        else if (strInterval == "ã")
-        {
-            out[i - accents] = 'a';
-            accents++;
-            i++;
-        }
-        else if (strInterval == "â")
-        {
-            out[i - accents] = 'a';
-            accents++;
-            i++;
-        }
-        else if (strInterval == "é")
-        {
-            out[i - accents] = 'e';
-            accents++;
-            i++;
-        }
-        else if (strInterval == "è")
-        {
-            out[i - accents] = 'e';
-            accents++;
-            i++;
-        }
-        else if (strInterval == "ê")
-        {
-            out[i - accents] = 'e';
-            accents++;
-            i++;
-        }
-        else if (strInterval == "í")
-        {
-            out[i - accents] = 'i';
-            accents++;
-            i++;
-        }
-        else if (strInterval == "ì")
-        {
-            out[i - accents] = 'i';
-            accents++;
-            i++;
-        }
-        else if (strInterval == "î")
-        {
-            out[i - accents] = 'i';
-            accents++;
-            i++;
-        }
-        else if (strInterval == "ó")
-        {
-            out[i - accents] = 'o';
-            accents++;
-            i++;
-        }
-        else if (strInterval == "ò")
-        {
-            out[i - accents] = 'o';
-            accents++;
-            i++;
-        }
-        else if (strInterval == "õ")
-        {
-            out[i - accents] = 'o';
-            accents++;
-            i++;
-        }
-        else if (strInterval == "ô")
-        {
-            out[i - accents] = 'o';
-            accents++;
-            i++;
-        }
-        else if (strInterval == "ú")
-        {
-            out[i - accents] = 'u';
-            accents++;
-            i++;
-        }
-        else if (strInterval == "ù")
-        {
-            out[i - accents] = 'u';
-            accents++;
-            i++;
-        }
-        else if (strInterval == "û")
-        {
-            out[i - accents] = 'u';
-            accents++;
-            i++;
-        }
-        else if (strInterval == "ç")
-        {
-            out[i - accents] = 'c';
-            accents++;
-            i++;
-        }
-        else if (strInterval == "Á")
-        {
-            out[i - accents] = 'A';
-            accents++;
-            i++;
-        }
-        else if (strInterval == "À")
-        {
-            out[i - accents] = 'A';
-            accents++;
-            i++;
-        }
-        else if (strInterval == "Ã")
-        {
-            out[i - accents] = 'A';
-            accents++;
-            i++;
-        }
-        else if (strInterval == "Â")
-        {
-            out[i - accents] = 'A';
-            accents++;
-            i++;
-        }
-        else if (strInterval == "É")
-        {
-            out[i - accents] = 'E';
-            accents++;
-            i++;
-        }
-        else if (strInterval == "È")
-        {
-            out[i - accents] = 'E';
-            accents++;
-            i++;
-        }
-        else if (strInterval == "Ê")
-        {
-            out[i - accents] = 'E';
-            accents++;
-            i++;
-        }
-        else if (strInterval == "Í")
-        {
-            out[i - accents] = 'I';
-            accents++;
-            i++;
-        }
-        else if (strInterval == "Ì")
-        {
-            out[i - accents] = 'I';
-            accents++;
-            i++;
-        }
-        else if (strInterval == "Î")
-        {
-            out[i - accents] = 'I';
-            accents++;
-            i++;
-        }
-        else if (strInterval == "Ó")
-        {
-            out[i - accents] = 'O';
-            accents++;
-            i++;
-        }
-        else if (strInterval == "Ò")
-        {
-            out[i - accents] = 'O';
-            accents++;
-            i++;
-        }
-        else if (strInterval == "Õ")
-        {
-            out[i - accents] = 'O';
-            accents++;
-            i++;
-        }
-        else if (strInterval == "Ô")
-        {
-            out[i - accents] = 'O';
-            accents++;
-            i++;
-        }
-        else if (strInterval == "Ú")
-        {
-            out[i - accents] = 'U';
-            accents++;
-            i++;
-        }
-        else if (strInterval == "Ù")
-        {
-            out[i - accents] = 'U';
-            accents++;
-            i++;
-        }
-        else if (strInterval == "Û")
-        {
-            out[i - accents] = 'U';
-            accents++;
-            i++;
-        }
-        else if (strInterval == "Ç")
-        {
-            out[i - accents] = 'C';
+            out[i - accents] = specialCharacters.find(strInterval)->second;
             accents++;
             i++;
         }
         else
-        {
             out[i - accents] = str[i];
-        }
+        cout << specialCharacters.find(strInterval)->second << "\nout: " << out << endl;
     }
+}
+
+void startMap()
+{
+    specialCharacters.insert(pair<string, char>("á", 'a'));
+    specialCharacters.insert(pair<string, char>("à", 'a'));
+    specialCharacters.insert(pair<string, char>("ã", 'a'));
+    specialCharacters.insert(pair<string, char>("â", 'a'));
+    specialCharacters.insert(pair<string, char>("é", 'e'));
+    specialCharacters.insert(pair<string, char>("è", 'e'));
+    specialCharacters.insert(pair<string, char>("ê", 'e'));
+    specialCharacters.insert(pair<string, char>("í", 'i'));
+    specialCharacters.insert(pair<string, char>("ì", 'i'));
+    specialCharacters.insert(pair<string, char>("î", 'i'));
+    specialCharacters.insert(pair<string, char>("ó", 'o'));
+    specialCharacters.insert(pair<string, char>("ò", 'o'));
+    specialCharacters.insert(pair<string, char>("õ", 'o'));
+    specialCharacters.insert(pair<string, char>("ô", 'o'));
+    specialCharacters.insert(pair<string, char>("ú", 'u'));
+    specialCharacters.insert(pair<string, char>("ù", 'u'));
+    specialCharacters.insert(pair<string, char>("û", 'u'));
+    specialCharacters.insert(pair<string, char>("ç", 'c'));
+    specialCharacters.insert(pair<string, char>("ñ", 'n'));
+    specialCharacters.insert(pair<string, char>("Á", 'A'));
+    specialCharacters.insert(pair<string, char>("À", 'A'));
+    specialCharacters.insert(pair<string, char>("Ã", 'A'));
+    specialCharacters.insert(pair<string, char>("Â", 'A'));
+    specialCharacters.insert(pair<string, char>("É", 'E'));
+    specialCharacters.insert(pair<string, char>("È", 'E'));
+    specialCharacters.insert(pair<string, char>("Ê", 'E'));
+    specialCharacters.insert(pair<string, char>("Í", 'I'));
+    specialCharacters.insert(pair<string, char>("Ì", 'I'));
+    specialCharacters.insert(pair<string, char>("Î", 'I'));
+    specialCharacters.insert(pair<string, char>("Ó", 'O'));
+    specialCharacters.insert(pair<string, char>("Ò", 'O'));
+    specialCharacters.insert(pair<string, char>("Õ", 'O'));
+    specialCharacters.insert(pair<string, char>("Ô", 'O'));
+    specialCharacters.insert(pair<string, char>("Ú", 'U'));
+    specialCharacters.insert(pair<string, char>("Ù", 'U'));
+    specialCharacters.insert(pair<string, char>("Û", 'U'));
+    specialCharacters.insert(pair<string, char>("Ç", 'C'));
+    specialCharacters.insert(pair<string, char>("Ñ", 'N'));
 }

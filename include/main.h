@@ -7,8 +7,13 @@
 #include <vector>
 #include <sstream>
 #include <algorithm>
+#include <map>
 #include "../include/json.h"
 using namespace std;
+
+map<string, char> specialCharacters;
+
+void startMap();
 
 void removeAccents(string str, char *out);
 
