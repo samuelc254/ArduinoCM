@@ -1,8 +1,0 @@
-LED 13
-TRAVA 12
-MOTOR 11
-SENSOR A4
-bimanual_1 2
-bimanual_2 3
-start 7
-Manual PB2

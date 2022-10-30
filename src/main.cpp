@@ -2,71 +2,94 @@
 
 int main(int argc, char *argv[])
 {
+    uint8_t externConfig = 0,
+            variantSetup = 0,
+            variantHeader = 0;
+
+    // cout << argc << " argv[0] = " << argv[0] << " argv[1] = " << argv[1] << " argv[2] = " << argv[2] << endl;
+
+    startMap();
     ifstream setupFile;
-    ofstream headerFile("defines.h");
-
+    ofstream headerFile;
     Json::Reader reader;
-    Json::Value boardsConfigs;
+    Json::Value configJson;
+    Json::Value setupJson;
 
-    if (!reader.parse(boardsJson, boardsConfigs))
+    for (int i = 0; i < argc; i++)
     {
-        cout << "Error parsing boardsConfig.json\n";
-        return 1;
-    }
+        string arg(argv[i]);
 
-    headerFile << "#ifndef DEFINES_H\n#define DEFINES_H\n\n";
-
-    if (argc < 2)
-    {
-        cout << "txt mode\n";
-
-        string pinName, pinNumber;
-        setupFile.open("setup.txt");
-        while (getline(setupFile, pinName, ' '))
+        if (arg == "-c")
         {
-            getline(setupFile, pinNumber, '\n');
-            headerFile << "#define " << pinName << "_wPort " << boardsConfigs[pinNumber]["wPort"].asString() << endl;
-            headerFile << "#define " << pinName << "_rPort " << boardsConfigs[pinNumber]["rPort"].asString() << endl;
-            headerFile << "#define " << pinName << "_bit " << boardsConfigs[pinNumber]["bit"].asString() << "\n\n";
+            externConfig = 1;
+            ifstream configFile(argv[i + 1]);
+            if (!reader.parse(configFile, configJson))
+            {
+                cout << "Error parsing config file" << endl;
+                return 1;
+            }
+            configFile.close();
+            cout << "using extern config file" << endl;
+        }
+        else if (i == (argc - 1) && externConfig == 0)
+        {
+            reader.parse(configString, configJson);
+            cout << "using default config file" << endl;
+        }
+
+        if (arg == "-i")
+        {
+            variantSetup = 1;
+            setupFile.open(argv[i + 1]);
+            if (!reader.parse(setupFile, setupJson))
+            {
+                cout << "Error parsing " << argv[i + 1] << endl;
+                return 1;
+            }
+            cout << "using alternative setup file" << endl;
+        }
+        else if (i == (argc - 1) && variantSetup == 0)
+        {
+            setupFile.open("setup.json");
+            if (!reader.parse(setupFile, setupJson))
+            {
+                cout << "Error parsing setup.json" << endl;
+                return 1;
+            }
+            cout << "using default setup file" << endl;
+        }
+
+        if (arg == "-o")
+        {
+            variantHeader = 1;
+            headerFile.open(argv[i + 1]);
+            cout << "using alternative header file" << endl;
+        }
+        else if (i == (argc - 1) && variantHeader == 0)
+        {
+            headerFile.open("header.h");
+            cout << "using default header file" << endl;
         }
     }
 
-    else
+    string pinName, boardName = setupJson["Board"].asString();
+    headerFile << "#ifndef DEFINES_H\n#define DEFINES_H\n\n";
+    for (auto const &pinNumber : setupJson["Connections"].getMemberNames())
     {
-        string arg1(argv[1]);
-        if (arg1 == "-json")
+        for (auto const &_pinNumber : configJson[boardName].getMemberNames())
         {
-            startMap();
-            cout << "json mode\n";
-
-            Json::Value setupJson;
-            (argc > 2) ? setupFile.open(argv[2]) : setupFile.open("setup.json");
-            if (!reader.parse(setupFile, setupJson))
+            if (pinNumber == _pinNumber)
             {
-                cout << "Error parsing setup.json\n";
-                return 1;
-            }
+                pinName = setupJson["Connections"][pinNumber]["Name"].asString();
 
-            string pinName, boardName = setupJson["Board"].asString();
+                replace(pinName.begin(), pinName.end(), ' ', '_');
+                replace(pinName.begin(), pinName.end(), '/', '_');
+                char pinNameFormated[pinName.length()];
+                removeAccents(pinName, pinNameFormated);
 
-            for (auto const &pinNumber : setupJson["Connections"].getMemberNames())
-            {
-                for (auto const &_pinNumber : boardsConfigs[boardName].getMemberNames())
-                {
-                    if (pinNumber == _pinNumber)
-                    {
-                        pinName = setupJson["Connections"][pinNumber]["Name"].asString();
-
-                        replace(pinName.begin(), pinName.end(), ' ', '_');
-                        replace(pinName.begin(), pinName.end(), '/', '_');
-                        char pinNameFormated[pinName.length()];
-                        removeAccents(pinName, pinNameFormated);
-
-                        headerFile << "#define " << pinNameFormated << "_wPort " << boardsConfigs[boardName][pinNumber]["wPort"].asString() << endl;
-                        headerFile << "#define " << pinNameFormated << "_rPort " << boardsConfigs[boardName][pinNumber]["rPort"].asString() << endl;
-                        headerFile << "#define " << pinNameFormated << "_bit " << boardsConfigs[boardName][pinNumber]["bit"].asString() << "\n\n";
-                    }
-                }
+                headerFile << "#define " << pinNameFormated << "_wPort " << configJson[boardName][pinNumber]["wPort"].asString() << endl;
+                headerFile << "#define " << pinNameFormated << "_rPort " << configJson[boardName][pinNumber]["rPort"].asString() << endl;
+                headerFile << "#define " << pinNameFormated << "_bit " << configJson[boardName][pinNumber]["bit"].asString() << "\n\n";
             }
         }
     }
@@ -97,7 +120,6 @@ void removeAccents(string str, char *out)
         }
         else
             out[i - accents] = str[i];
-        cout << specialCharacters.find(strInterval)->second << "\nout: " << out << endl;
     }
 }
 
