@@ -1,164 +1,166 @@
 {
     "Board": "UNO",
+    "Settings": {
+        "Sizes": {
+            "Names": {
+                "Font": 20
+            },
+            "Connections": {
+                "Size": 100
+            }
+        },
+        "Colors": {
+            "PortTypes": {
+                "Default": {
+                    "Text": [
+                        0,
+                        0,
+                        0,
+                        255
+                    ]
+                }
+            }
+        }
+    },
     "Connections": {
-        "NC": {
-            "Name": "No connection",
-            "InOut": "None",
-            "Type": "Default"
-        },
-        "IOREF": {
-            "Name": "I/O Reference",
-            "InOut": "None",
-            "Type": "Default"
-        },
         "RESET": {
-            "Name": "Reset",
-            "InOut": "in",
+            "Name": "Reset push button",
+            "InOut": "InputPullup",
             "Type": "Default"
         },
         "3.3V": {
             "Name": "3.3V Supply",
-            "InOut": "out",
+            "InOut": "Output",
             "Type": "Power"
         },
         "5V": {
             "Name": "5V Supply",
-            "InOut": "out",
+            "InOut": "Output",
             "Type": "Power"
         },
         "GND1": {
             "Name": "GND 1",
-            "InOut": "None",
+            "InOut": "Output",
             "Type": "Ground"
         },
         "GND2": {
-            "Name": "GND 2",
-            "InOut": "None",
+            "Name": "GND DC Power",
+            "InOut": "Input",
             "Type": "Ground"
         },
         "VIN": {
-            "Name": "12V In",
-            "InOut": "in",
+            "Name": "12V DC Power",
+            "InOut": "Input",
             "Type": "Power"
         },
         "A0": {
-            "Name": "Analog 0",
-            "InOut": "None",
+            "Name": "Velocity Pot",
+            "InOut": "Input",
             "Type": "Default"
         },
         "A1": {
-            "Name": "Analog 1",
-            "InOut": "None",
+            "Name": "Left light sensor",
+            "InOut": "Input",
             "Type": "Default"
         },
         "A2": {
-            "Name": "Analog 2",
-            "InOut": "None",
+            "Name": "Right light sensor",
+            "InOut": "Input",
             "Type": "Default"
         },
         "A3": {
-            "Name": "Analog 3",
-            "InOut": "None",
+            "Name": "Temperature sensor",
+            "InOut": "Input",
             "Type": "Default"
         },
         "A4": {
-            "Name": "Analog 4",
-            "InOut": "None",
+            "Name": "Force sensor",
+            "InOut": "Input",
             "Type": "Default"
         },
         "A5": {
-            "Name": "Analog 5",
-            "InOut": "None",
+            "Name": "Battery voltage",
+            "InOut": "Input",
             "Type": "Default"
-        },
-        "D0": {
-            "Name": "Digital 0 RX",
-            "InOut": "in",
-            "Type": "Default"
-        },
-        "D1": {
-            "Name": "Digital 1 TX",
-            "InOut": "out",
-            "Type": "Default"
-        },
-        "D2": {
-            "Name": "Digital 2",
-            "InOut": "None",
-            "Type": "Default"
-        },
-        "D3": {
-            "Name": "Digital 3",
-            "InOut": "None",
-            "Type": "Default"
-        },
-        "D4": {
-            "Name": "Digital 4",
-            "InOut": "None",
-            "Type": "Default"
-        },
-        "D5": {
-            "Name": "Digital 5",
-            "InOut": "None",
-            "Type": "Default"
-        },
-        "D6": {
-            "Name": "Digital 6",
-            "InOut": "None",
-            "Type": "Default"
-        },
-        "D7": {
-            "Name": "Digital 7",
-            "InOut": "None",
-            "Type": "Default"
-        },
-        "D8": {
-            "Name": "Digital 8",
-            "InOut": "None",
-            "Type": "Default"
-        },
-        "D9": {
-            "Name": "Digital 9",
-            "InOut": "None",
-            "Type": "Default"
-        },
-        "D10": {
-            "Name": "Digital 10",
-            "InOut": "None",
-            "Type": "Default"
-        },
-        "D11": {
-            "Name": "Digital 11",
-            "InOut": "None",
-            "Type": "Default"
-        },
-        "D12": {
-            "Name": "Digital 12",
-            "InOut": "None",
-            "Type": "Default"
-        },
-        "D13": {
-            "Name": "Digital 13",
-            "InOut": "None",
-            "Type": "Default"
-        },
-        "AREF": {
-            "Name": "Analog reference",
-            "InOut": "None",
-            "Type": "Default"
-        },
-        "GND3": {
-            "Name": "GND 3",
-            "InOut": "None",
-            "Type": "Ground"
         },
         "SCL": {
-            "Name": "I2C SCL",
-            "InOut": "in_out",
+            "Name": "I2C SCL Gyro",
+            "InOut": "Input_Output",
             "Type": "Default"
         },
         "SDA": {
-            "Name": "I2C SDA",
-            "InOut": "in_out",
+            "Name": "I2C SDA Gyro",
+            "InOut": "Input_Output",
+            "Type": "Default"
+        },
+        "GND3": {
+            "Name": "Commom GND",
+            "InOut": "Input_Output",
+            "Type": "Ground"
+        },
+        "D2": {
+            "Name": "Switch button",
+            "InOut": "InputPullup",
+            "Type": "Default"
+        },
+        "D3": {
+            "Name": "LED1",
+            "InOut": "Output",
+            "Type": "Default"
+        },
+        "D4": {
+            "Name": "LED2",
+            "InOut": "Output",
+            "Type": "Default"
+        },
+        "D5": {
+            "Name": "PWM IN1",
+            "InOut": "Output",
+            "Type": "Default"
+        },
+        "D6": {
+            "Name": "PWM IN2",
+            "InOut": "Output",
+            "Type": "Default"
+        },
+        "D7": {
+            "Name": "P",
+            "InOut": "Output",
+            "Type": "Default"
+        },
+        "D8": {
+            "Name": "Pequenos também olha",
+            "InOut": "Output",
+            "Type": "Default"
+        },
+        "D9": {
+            "Name": "PWM IN3",
+            "InOut": "Output",
+            "Type": "Default"
+        },
+        "D10": {
+            "Name": "PWM IN4",
+            "InOut": "Output",
+            "Type": "Default"
+        },
+        "D11": {
+            "Name": "PWM Servo",
+            "InOut": "Output",
+            "Type": "Default"
+        },
+        "D12": {
+            "Name": "Você pode usar nomes hiper ultra mega blaster longos",
+            "InOut": "Output",
+            "Type": "Default"
+        },
+        "TX": {
+            "Name": "TX Bluetooth",
+            "InOut": "Output",
+            "Type": "Default"
+        },
+        "RX": {
+            "Name": "RX Bluetooth",
+            "InOut": "Input",
             "Type": "Default"
         }
     }

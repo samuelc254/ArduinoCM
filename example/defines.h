@@ -33,7 +33,7 @@
 #define PWM_Servo_rPort PINB
 #define PWM_Servo_bit 3
 
-#define Você_pode_usar_nomes_hiper_ultra_mega_blaster_longos_wPort PORTB
+#define Voce_pode_usar_nomes_hiper_ultra_mega_blaster_longos_wPort PORTB
 #define Você_pode_usar_nomes_hiper_ultra_mega_blaster_longos_rPort PINB
 #define Você_pode_usar_nomes_hiper_ultra_mega_blaster_longos_bit 4
 
@@ -57,11 +57,11 @@
 #define PWM_IN2_rPort PIND
 #define PWM_IN2_bit 6
 
-#define A_wPort PORTD
-#define A_rPort PIND
-#define A_bit 7
+#define P_wPort PORTD
+#define P_rPort PIND
+#define P_bit 7
 
-#define Pequenos_também_olha_wPort PORTB
+#define Pequenos_tambem_olha_wPort PORTB
 #define Pequenos_também_olha_rPort PINB
 #define Pequenos_também_olha_bit 0
 
