@@ -73,7 +73,7 @@ int main(int argc, char *argv[])
     }
 
     string pinName, boardName = setupJson["Board"].asString();
-    headerFile << "#ifndef DEFINES_H\n#define DEFINES_H\n\n";
+    headerFile << "#ifndef DEFINES_H\n#define DEFINES_H\n#define cpu_map_for_" << boardName << "\n\n";
     for (auto const &pinNumber : setupJson["Connections"].getMemberNames())
     {
         for (auto const &_pinNumber : configJson[boardName].getMemberNames())

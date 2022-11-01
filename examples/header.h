@@ -1,5 +1,6 @@
 #ifndef DEFINES_H
 #define DEFINES_H
+#define cpu_map_for_UNO
 
 #define Velocity_Pot_wPort PORTC
 #define Velocity_Pot_rPort PINC
@@ -68,6 +69,22 @@
 #define PWM_IN3_wPort PORTB
 #define PWM_IN3_rPort PINB
 #define PWM_IN3_bit 1
+
+#define RX_Bluetooth_wPort PORTD
+#define RX_Bluetooth_rPort PIND
+#define RX_Bluetooth_bit 0
+
+#define I2C_SCL_Gyro_wPort PORTC
+#define I2C_SCL_Gyro_rPort PINC
+#define I2C_SCL_Gyro_bit 5
+
+#define I2C_SDA_Gyro_wPort PORTC
+#define I2C_SDA_Gyro_rPort PINC
+#define I2C_SDA_Gyro_bit 4
+
+#define TX_Bluetooth_wPort PORTD
+#define TX_Bluetooth_rPort PIND
+#define TX_Bluetooth_bit 1
 
 
 #define SetBit(RES, BIT)(RES |= (1 << BIT)) // Set BIT in RES to HIGH
