@@ -1,3 +1,6 @@
 .vscode*
 build*
 examples/ArduinoCM*
+.ccls-cache*
+.replit
+replit.nix
