@@ -6,8 +6,6 @@ int main(int argc, char *argv[])
             variantSetup = 0,
             variantHeader = 0;
 
-    // cout << argc << " argv[0] = " << argv[0] << " argv[1] = " << argv[1] << " argv[2] = " << argv[2] << endl;
-
     startMap();
     ifstream setupFile;
     ofstream headerFile;
@@ -67,7 +65,7 @@ int main(int argc, char *argv[])
         }
         else if (i == (argc - 1) && variantHeader == 0)
         {
-            headerFile.open("header.h");
+            headerFile.open(setupJson["Board"].asString() + (string)("_cpu_map.h"));
             cout << "using default header file" << endl;
         }
     }
@@ -87,6 +85,7 @@ int main(int argc, char *argv[])
                 char pinNameFormated[pinName.length()];
                 removeAccents(pinName, pinNameFormated);
 
+                headerFile << "#define " << pinNameFormated << "_ddr " << configJson[boardName][pinNumber]["ddr"].asString() << endl;
                 headerFile << "#define " << pinNameFormated << "_wPort " << configJson[boardName][pinNumber]["wPort"].asString() << endl;
                 headerFile << "#define " << pinNameFormated << "_rPort " << configJson[boardName][pinNumber]["rPort"].asString() << endl;
                 headerFile << "#define " << pinNameFormated << "_bit " << configJson[boardName][pinNumber]["bit"].asString() << "\n\n";

@@ -23,144 +23,79 @@
         }
     },
     "Connections": {
-        "RESET": {
-            "Name": "Reset push button",
-            "InOut": "InputPullup",
-            "Type": "Default"
-        },
-        "3.3V": {
-            "Name": "3.3V Supply",
-            "InOut": "Output",
-            "Type": "Power"
-        },
         "5V": {
             "Name": "5V Supply",
-            "InOut": "Output",
-            "Type": "Power"
-        },
-        "GND1": {
-            "Name": "GND 1",
-            "InOut": "Output",
-            "Type": "Ground"
-        },
-        "GND2": {
-            "Name": "GND DC Power",
-            "InOut": "Input",
-            "Type": "Ground"
-        },
-        "VIN": {
-            "Name": "12V DC Power",
             "InOut": "Input",
             "Type": "Power"
         },
-        "A0": {
-            "Name": "Velocity Pot",
+        "GND": {
+            "Name": "GND Supply",
             "InOut": "Input",
-            "Type": "Default"
+            "Type": "Ground"
         },
-        "A1": {
-            "Name": "Left light sensor",
-            "InOut": "Input",
-            "Type": "Default"
+        "5V.1": {
+            "Name": "5V controller source",
+            "InOut": "Output",
+            "Type": "Power"
         },
-        "A2": {
-            "Name": "Right light sensor",
-            "InOut": "Input",
-            "Type": "Default"
-        },
-        "A3": {
-            "Name": "Temperature sensor",
-            "InOut": "Input",
-            "Type": "Default"
-        },
-        "A4": {
-            "Name": "Force sensor",
-            "InOut": "Input",
-            "Type": "Default"
-        },
-        "A5": {
-            "Name": "Battery voltage",
-            "InOut": "Input",
-            "Type": "Default"
+        "GND.1": {
+            "Name": "GND controller source",
+            "InOut": "Output",
+            "Type": "Ground"
         },
         "SCL": {
-            "Name": "I2C SCL Gyro",
+            "Name": "I2C controller SCL",
             "InOut": "Input_Output",
             "Type": "Default"
         },
         "SDA": {
-            "Name": "I2C SDA Gyro",
+            "Name": "I2C controller SDA",
             "InOut": "Input_Output",
             "Type": "Default"
         },
-        "GND3": {
-            "Name": "Commom GND",
-            "InOut": "Input_Output",
-            "Type": "Ground"
-        },
         "D2": {
-            "Name": "Switch button",
+            "Name": "bl motor step",
             "InOut": "InputPullup",
             "Type": "Default"
         },
         "D3": {
-            "Name": "LED1",
+            "Name": "fl motor step",
             "InOut": "Output",
             "Type": "Default"
         },
         "D4": {
-            "Name": "LED2",
+            "Name": "br motor step",
             "InOut": "Output",
             "Type": "Default"
         },
         "D5": {
-            "Name": "PWM IN1",
+            "Name": "bl motor dir",
             "InOut": "Output",
             "Type": "Default"
         },
         "D6": {
-            "Name": "PWM IN2",
+            "Name": "fl motor dir",
             "InOut": "Output",
             "Type": "Default"
         },
         "D7": {
-            "Name": "P",
+            "Name": "br motor dir",
             "InOut": "Output",
             "Type": "Default"
         },
         "D8": {
-            "Name": "Pequenos também olha",
-            "InOut": "Output",
-            "Type": "Default"
-        },
-        "D9": {
-            "Name": "PWM IN3",
-            "InOut": "Output",
-            "Type": "Default"
-        },
-        "D10": {
-            "Name": "PWM IN4",
-            "InOut": "Output",
-            "Type": "Default"
-        },
-        "D11": {
-            "Name": "PWM Servo",
+            "Name": "motors enable",
             "InOut": "Output",
             "Type": "Default"
         },
         "D12": {
-            "Name": "Você pode usar nomes hiper ultra mega blaster longos",
+            "Name": "fr motor step",
             "InOut": "Output",
             "Type": "Default"
         },
-        "TX": {
-            "Name": "TX Bluetooth",
+        "D13": {
+            "Name": "fr motor dir",
             "InOut": "Output",
-            "Type": "Default"
-        },
-        "RX": {
-            "Name": "RX Bluetooth",
-            "InOut": "Input",
             "Type": "Default"
         }
     }
