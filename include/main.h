@@ -19,6 +19,17 @@ void removeAccents(string str, char *out);
 
 int main(int argc, char *argv[]);
 
+const char *helpMsg = R"(
+╔═══════════════════════════════════════════════════╗
+║                ARDUINO CPU MAPPER                 ║
+╚═══════════════════════════════════════════════════╝
+-help || -h shows this message
+-c choose an external configuration file
+-i specify the setup file name
+-o specify the output file name
+-g generate input/output configurations in a .c file
+)";
+
 const char *macros = R"(
 #define SetBit(RES, BIT)(RES |= (1 << BIT)) // Set BIT in RES to HIGH
 #define ClrBit(RES, BIT)(RES &= ~ (1 << BIT)) // Set BIT in RES to LOW
