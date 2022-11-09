@@ -2,16 +2,11 @@
 
 int main(int argc, char *argv[])
 {
-    uint8_t externConfig = 0,
-            variantSetup = 0,
-            variantHeader = 0,
-            generateCfile = 0;
-
-    string arg_c,
-        arg_i,
-        arg_o,
-        arg_g;
-
+    externConfig = 0;
+    variantSetup = 0;
+    variantHeader = 0;
+    generateCfile = 0;
+  
     startMap();
     ifstream setupFile;
     ofstream headerFile;
@@ -102,12 +97,12 @@ int main(int argc, char *argv[])
     {
         codeFile.open(arg_o + (string)(".c"));
         codeFile << R"(#include ")" << arg_o + (string)(".h") << R"(")";
-        codeFile << "\n\nvoid initPins(){";
+        codeFile << "\n\nvoid initPins(){\n\n";
     }
-    else if (generateCfile)
+    else if (generateCfile){
         codeFile.open(setupJson["Board"].asString() + (string)("_cpu_map.c"));
     codeFile << R"(#include ")" << setupJson["Board"].asString() + (string)("_cpu_map.h") << R"(")";
-    codeFile << "\n\nvoid initPins(){\n\n";
+    codeFile << "\n\nvoid initPins()\n{\n";}
 
     string pinName, boardName = setupJson["Board"].asString();
     headerFile << "#ifndef DEFINES_H\n#define DEFINES_H\n\n";
@@ -132,22 +127,26 @@ int main(int argc, char *argv[])
                 if (generateCfile)
                 {
                     if (setupJson["Connections"][pinNumber]["InOut"].asString() == "Output")
-                        codeFile << "SetBit(" << pinNameFormated << "_ddr, " << pinNameFormated << "_bit) // define the pin as output\n\n";
+                        codeFile << "SetBit(" << pinNameFormated << "_ddr, " << pinNameFormated << "_bit) // output\n\n";
                     if (setupJson["Connections"][pinNumber]["InOut"].asString() == "Input")
-                        codeFile << "ClrBit(" << pinNameFormated << "_ddr, " << pinNameFormated << "_bit) // define the pin as input\n\n";
+                        codeFile << "ClrBit(" << pinNameFormated << "_ddr, " << pinNameFormated << "_bit) // input\n\n";
                     if (setupJson["Connections"][pinNumber]["InOut"].asString() == "InputPullup")
                     {
-                        codeFile << "ClrBit(" << pinNameFormated << "_ddr, " << pinNameFormated << "_bit) // define the pin as input\n";
-                        codeFile << "SetBit(" << pinNameFormated << "_wPort, " << pinNameFormated << "_bit) // define the pin as pullup\n\n";
+                        codeFile << "ClrBit(" << pinNameFormated << "_ddr, " << pinNameFormated << "_bit) // input\n";
+                        codeFile << "SetBit(" << pinNameFormated << "_wPort, " << pinNameFormated << "_bit) // pullup\n\n";
                     }
                 }
             }
         }
     }
     headerFile << macros;
-    if (generateCfile)
+    if (generateCfile){
+        headerFile << "void initPins();\n\n#endif";
         codeFile << "}";
-
+      }
+  else
+      headerFile << "#endif";
+  
     setupFile.close();
     headerFile.close();
     codeFile.close();

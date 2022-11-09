@@ -1,7 +1,7 @@
 #include "UNO_cpu_map.h"
 
-void initPins(){
-
+void initPins()
+{
 ClrBit(Velocity_Pot_ddr, Velocity_Pot_bit) // define the pin as input
 
 ClrBit(Left_light_sensor_ddr, Left_light_sensor_bit) // define the pin as input

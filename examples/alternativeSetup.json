@@ -55,7 +55,7 @@
         },
         "D2": {
             "Name": "bl motor step",
-            "InOut": "InputPullup",
+            "InOut": "Output",
             "Type": "Default"
         },
         "D3": {

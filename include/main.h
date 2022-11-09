@@ -11,6 +11,16 @@
 #include "../include/json.h"
 using namespace std;
 
+    uint8_t externConfig,
+            variantSetup,
+            variantHeader,
+            generateCfile;
+
+    string arg_c,
+        arg_i,
+        arg_o,
+        arg_g;
+
 map<string, char> specialCharacters;
 
 void startMap();
@@ -20,24 +30,24 @@ void removeAccents(string str, char *out);
 int main(int argc, char *argv[]);
 
 const char *helpMsg = R"(
-╔═══════════════════════════════════════════════════╗
-║                ARDUINO CPU MAPPER                 ║
-╚═══════════════════════════════════════════════════╝
--help || -h shows this message
--c choose an external configuration file
--i specify the setup file name
--o specify the output file name
--g generate input/output configurations in a .c file
+╔═════════════════════════════════════════════════════╗
+║                  ARDUINO CPU MAPPER                 ║
+╠═════════════════════════════════════════════════════╣
+║-help || -h shows this message                       ║
+║-c choose an external configuration file             ║
+║-i specify the setup file name                       ║
+║-o specify the output file name                      ║
+║-g generate input/output configurations in a .c file ║
+╚═════════════════════════════════════════════════════╝
 )";
 
-const char *macros = R"(
-#define SetBit(RES, BIT)(RES |= (1 << BIT)) // Set BIT in RES to HIGH
+const char *macros = R"(#define SetBit(RES, BIT)(RES |= (1 << BIT)) // Set BIT in RES to HIGH
 #define ClrBit(RES, BIT)(RES &= ~ (1 << BIT)) // Set BIT in RES to LOW
 #define TstBit(RES, BIT)(RES &  (1 << BIT)) // Test BIT in RES and return 0 or 1
 #define InvBit(RES, BIT)(RES ^= (1 << BIT)) // Invert BIT in RES (0 to 1 and 1 to 0)
 #define WriteBit(RES, BIT, VAL) (VAL)?SetBit(RES, BIT):ClrBit(RES, BIT) // Write VAL in BIT in RES (0 or 1)
 
-#endif)";
+)";
 
 const char *configString = R"( 
 {
