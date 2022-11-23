@@ -1,5 +1,5 @@
 ArduinoCM: build/main.o build/jsoncpp.o
-	g++ build/main.o build/jsoncpp.o -o examples/ArduinoCM && cd examples && ./ArduinoCM -h && cd ..
+	g++ build/main.o build/jsoncpp.o -o examples/ArduinoCM && cd examples && ./ArduinoCM -g && cd ..
 
 build/main.o: src/main.cpp
 	g++ -c src/main.cpp -o build/main.o

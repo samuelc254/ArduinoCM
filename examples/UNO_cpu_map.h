@@ -1,5 +1,5 @@
-#ifndef DEFINES_H
-#define DEFINES_H
+#ifndef UNO_cpu_map_H
+#define UNO_cpu_map_H
 
 #define Velocity_Pot_ddr DDRC
 #define Velocity_Pot_wPort PORTC

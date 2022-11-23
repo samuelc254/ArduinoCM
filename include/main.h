@@ -11,21 +11,31 @@
 #include "../include/json.h"
 using namespace std;
 
-    uint8_t externConfig,
-            variantSetup,
-            variantHeader,
-            generateCfile;
+ifstream setupFile;
+ofstream headerFile;
+ofstream codeFile;
+Json::Reader reader;
+Json::Value configJson;
+Json::Value setupJson;
 
-    string arg_c,
-        arg_i,
-        arg_o,
-        arg_g;
+uint8_t externConfig,
+    variantSetup,
+    variantHeader,
+    generateCfile;
+
+string outFileName,
+    arg_c,
+    arg_i,
+    arg_o,
+    arg_g;
 
 map<string, char> specialCharacters;
 
-void startMap();
+void generateFromJson();
 
 void removeAccents(string str, char *out);
+
+void startMap();
 
 int main(int argc, char *argv[]);
 
@@ -38,6 +48,8 @@ const char *helpMsg = R"(
 ║-i specify the setup file name                       ║
 ║-o specify the output file name                      ║
 ║-g generate input/output configurations in a .c file ║
+║                                                     ║
+║   for more info: github.com/samuelc254/ArduinoCM    ║
 ╚═════════════════════════════════════════════════════╝
 )";
 

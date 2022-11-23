@@ -6,15 +6,10 @@ int main(int argc, char *argv[])
     variantSetup = 0;
     variantHeader = 0;
     generateCfile = 0;
-  
-    startMap();
-    ifstream setupFile;
-    ofstream headerFile;
-    ofstream codeFile;
-    Json::Reader reader;
-    Json::Value configJson;
-    Json::Value setupJson;
 
+    startMap();
+
+    // check the given arguments
     for (int i = 0; i < argc; i++)
     {
         string arg(argv[i]);
@@ -44,13 +39,14 @@ int main(int argc, char *argv[])
             generateCfile = 1;
     }
 
+    // setup using given arguments
     if (externConfig)
     {
         ifstream configFile(arg_c);
         if (!reader.parse(configFile, configJson))
         {
-            cout << "Error parsing " << arg_c << endl;
-            return 1;
+            cout << "Error parsing " << arg_c << "\nusing default config file\n";
+            reader.parse(configString, configJson);
         }
         configFile.close();
         cout << "using extern config file" << endl;
@@ -76,7 +72,11 @@ int main(int argc, char *argv[])
         setupFile.open("setup.json");
         if (!reader.parse(setupFile, setupJson))
         {
-            cout << "Error parsing setup.json" << endl;
+            cout << "Error parsing setup.json\nLooking for .csv file\n";
+            setupFile.open("setup.csv");
+            string line_;
+            getline(setupFile, line_);
+            cout << line_ << "\n";
             return 1;
         }
         cout << "using default setup file" << endl;
@@ -84,28 +84,59 @@ int main(int argc, char *argv[])
 
     if (variantHeader)
     {
-        headerFile.open(arg_o + (string)(".h"));
+        string parsed, input = "text to be parsed";
+        stringstream input_stringstream(arg_o);
+        getline(input_stringstream, outFileName, '.');
+
+        headerFile.open(outFileName + (string)(".h"));
         cout << "using alternative output file name" << endl;
     }
     else
     {
-        headerFile.open(setupJson["Board"].asString() + (string)("_cpu_map.h"));
-        cout << "using default header file" << endl;
+        outFileName = setupJson["Board"].asString() + (string)("_cpu_map");
+
+        headerFile.open(outFileName + (string)(".h"));
+        cout << "using default output file name" << endl;
     }
 
     if (generateCfile && variantHeader)
     {
-        codeFile.open(arg_o + (string)(".c"));
-        codeFile << R"(#include ")" << arg_o + (string)(".h") << R"(")";
+        codeFile.open(outFileName + (string)(".c"));
+        codeFile << R"(#include ")" << outFileName + (string)(".h") << R"(")";
         codeFile << "\n\nvoid initPins(){\n\n";
     }
-    else if (generateCfile){
-        codeFile.open(setupJson["Board"].asString() + (string)("_cpu_map.c"));
-    codeFile << R"(#include ")" << setupJson["Board"].asString() + (string)("_cpu_map.h") << R"(")";
-    codeFile << "\n\nvoid initPins()\n{\n";}
+    else if (generateCfile)
+    {
+        codeFile.open(outFileName + (string)(".c"));
+        codeFile << R"(#include ")" << outFileName + (string)(".h") << R"(")";
+        codeFile << "\n\nvoid initPins()\n{\n";
+    }
 
+    // start writing files
+    headerFile << "#ifndef " << outFileName << "_H\n"
+               << "#define " << outFileName << "_H\n\n";
+
+    generateFromJson();
+
+    headerFile << macros;
+    if (generateCfile)
+    {
+        headerFile << "void initPins();\n\n#endif";
+        codeFile << "}";
+    }
+    else
+        headerFile << "#endif";
+
+    setupFile.close();
+    headerFile.close();
+    codeFile.close();
+
+    return 0;
+}
+
+void generateFromJson()
+{
     string pinName, boardName = setupJson["Board"].asString();
-    headerFile << "#ifndef DEFINES_H\n#define DEFINES_H\n\n";
     for (auto const &pinNumber : setupJson["Connections"].getMemberNames())
     {
         for (auto const &_pinNumber : configJson[boardName].getMemberNames())
@@ -139,19 +170,6 @@ int main(int argc, char *argv[])
             }
         }
     }
-    headerFile << macros;
-    if (generateCfile){
-        headerFile << "void initPins();\n\n#endif";
-        codeFile << "}";
-      }
-  else
-      headerFile << "#endif";
-  
-    setupFile.close();
-    headerFile.close();
-    codeFile.close();
-
-    return 0;
 }
 
 void removeAccents(string str, char *out)

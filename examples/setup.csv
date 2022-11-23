@@ -1,0 +1,4 @@
+uno
+motor,13,output
+encoderA,2,input_pullup
+encoderB,3,input_pullup
