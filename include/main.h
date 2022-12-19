@@ -355,157 +355,157 @@ const char *configString = R"(
             "bit": "5"
         },
         "0": {
-            "ddr": "DDRC",
+            "ddr": "DDRD",
             "wPort": "PORTD",
             "rPort": "PIND",
             "bit": "0"
         },
         "D0": {
-            "ddr": "DDRC",
+            "ddr": "DDRD",
             "wPort": "PORTD",
             "rPort": "PIND",
             "bit": "0"
         },
         "PD0": {
-            "ddr": "DDRC",
+            "ddr": "DDRD",
             "wPort": "PORTD",
             "rPort": "PIND",
             "bit": "6"
         },
         "RX": {
-            "ddr": "DDRC",
+            "ddr": "DDRD",
             "wPort": "PORTD",
             "rPort": "PIND",
             "bit": "0"
         },
         "1": {
-            "ddr": "DDRC",
+            "ddr": "DDRD",
             "wPort": "PORTD",
             "rPort": "PIND",
             "bit": "1"
         },
         "D1": {
-            "ddr": "DDRC",
+            "ddr": "DDRD",
             "wPort": "PORTD",
             "rPort": "PIND",
             "bit": "1"
         },
         "PD1": {
-            "ddr": "DDRC",
+            "ddr": "DDRD",
             "wPort": "PORTD",
             "rPort": "PIND",
             "bit": "7"
         },
         "TX": {
-            "ddr": "DDRC",
+            "ddr": "DDRD",
             "wPort": "PORTD",
             "rPort": "PIND",
             "bit": "1"
         },
         "2": {
-            "ddr": "DDRC",
+            "ddr": "DDRD",
             "wPort": "PORTD",
             "rPort": "PIND",
             "bit": "2"
         },
         "D2": {
-            "ddr": "DDRC",
+            "ddr": "DDRD",
             "wPort": "PORTD",
             "rPort": "PIND",
             "bit": "2"
         },
         "PD2": {
-            "ddr": "DDRC",
+            "ddr": "DDRD",
             "wPort": "PORTD",
             "rPort": "PIND",
             "bit": "2"
         },
         "INT0": {
-            "ddr": "DDRC",
+            "ddr": "DDRD",
             "wPort": "PORTD",
             "rPort": "PIND",
             "bit": "2"
         },
         "3": {
-            "ddr": "DDRC",
+            "ddr": "DDRD",
             "wPort": "PORTD",
             "rPort": "PIND",
             "bit": "3"
         },
         "D3": {
-            "ddr": "DDRC",
+            "ddr": "DDRD",
             "wPort": "PORTD",
             "rPort": "PIND",
             "bit": "3"
         },
         "PD3": {
-            "ddr": "DDRC",
+            "ddr": "DDRD",
             "wPort": "PORTD",
             "rPort": "PIND",
             "bit": "3"
         },
         "INT1": {
-            "ddr": "DDRC",
+            "ddr": "DDRD",
             "wPort": "PORTD",
             "rPort": "PIND",
             "bit": "3"
         },
         "4": {
-            "ddr": "DDRC",
+            "ddr": "DDRD",
             "wPort": "PORTD",
             "rPort": "PIND",
             "bit": "4"
         },
         "D4": {
-            "ddr": "DDRC",
+            "ddr": "DDRD",
             "wPort": "PORTD",
             "rPort": "PIND",
             "bit": "4"
         },
         "PD4": {
-            "ddr": "DDRC",
+            "ddr": "DDRD",
             "wPort": "PORTD",
             "rPort": "PIND",
             "bit": "4"
         },
         "5": {
-            "ddr": "DDRC",
+            "ddr": "DDRD",
             "wPort": "PORTD",
             "rPort": "PIND",
             "bit": "5"
         },
         "D5": {
-            "ddr": "DDRC",
+            "ddr": "DDRD",
             "wPort": "PORTD",
             "rPort": "PIND",
             "bit": "5"
         },
         "PD5": {
-            "ddr": "DDRC",
+            "ddr": "DDRD",
             "wPort": "PORTD",
             "rPort": "PIND",
             "bit": "5"
         },
         "6": {
-            "ddr": "DDRC",
+            "ddr": "DDRD",
             "wPort": "PORTD",
             "rPort": "PIND",
             "bit": "6"
         },
         "D6": {
-            "ddr": "DDRC",
+            "ddr": "DDRD",
             "wPort": "PORTD",
             "rPort": "PIND",
             "bit": "6"
         },
         "7": {
-            "ddr": "DDRC",
+            "ddr": "DDRD",
             "wPort": "PORTD",
             "rPort": "PIND",
             "bit": "7"
         },
         "D7": {
-            "ddr": "DDRC",
+            "ddr": "DDRD",
             "wPort": "PORTD",
             "rPort": "PIND",
             "bit": "7"
@@ -993,49 +993,49 @@ const char *configString = R"(
             "bit": "7"
         },
         "SCL": {
-            "ddr": "DDRC",
+            "ddr": "DDRD",
             "wPort": "PORTD",
             "rPort": "PIND",
             "bit": "0"
         },
         "PD0": {
-            "ddr": "DDRC",
+            "ddr": "DDRD",
             "wPort": "PORTD",
             "rPort": "PIND",
             "bit": "0"
         },
         "SDA": {
-            "ddr": "DDRC",
+            "ddr": "DDRD",
             "wPort": "PORTD",
             "rPort": "PIND",
             "bit": "1"
         },
         "PD1": {
-            "ddr": "DDRC",
+            "ddr": "DDRD",
             "wPort": "PORTD",
             "rPort": "PIND",
             "bit": "1"
         },
         "RX1": {
-            "ddr": "DDRC",
+            "ddr": "DDRD",
             "wPort": "PORTD",
             "rPort": "PIND",
             "bit": "2"
         },
         "PD2": {
-            "ddr": "DDRC",
+            "ddr": "DDRD",
             "wPort": "PORTD",
             "rPort": "PIND",
             "bit": "2"
         },
         "TX1": {
-            "ddr": "DDRC",
+            "ddr": "DDRD",
             "wPort": "PORTD",
             "rPort": "PIND",
             "bit": "3"
         },
         "PD3": {
-            "ddr": "DDRC",
+            "ddr": "DDRD",
             "wPort": "PORTD",
             "rPort": "PIND",
             "bit": "3"
