@@ -1,4 +1,4 @@
-uno
+board,uno
 motor,13,output
-encoderA,2,input_pullup
-encoderB,3,input_pullup
+encoderA,2,inputPullup
+encoderB,3,inputPullup

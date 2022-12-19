@@ -21,13 +21,15 @@ Json::Value setupJson;
 uint8_t externConfig,
     variantSetup,
     variantHeader,
-    generateCfile;
+    generateCfile,
+    useCSV;
+
+string pinName, pinNumber, pinMode, boardName;
 
 string outFileName,
     arg_c,
     arg_i,
-    arg_o,
-    arg_g;
+    arg_o;
 
 map<string, char> specialCharacters;
 

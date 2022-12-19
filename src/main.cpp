@@ -6,6 +6,7 @@ int main(int argc, char *argv[])
     variantSetup = 0;
     variantHeader = 0;
     generateCfile = 0;
+    useCSV = 0;
 
     startMap();
 
@@ -73,11 +74,18 @@ int main(int argc, char *argv[])
         if (!reader.parse(setupFile, setupJson))
         {
             cout << "Error parsing setup.json\nLooking for .csv file\n";
+
             setupFile.open("setup.csv");
-            string line_;
-            getline(setupFile, line_);
-            cout << line_ << "\n";
-            return 1;
+            getline(setupFile, pinName, ',');
+            if (pinName == "board")
+            {
+                useCSV = 1;
+                cout << "using csv file" << endl;
+            }
+            else
+            {
+                return 1;
+            }
         }
         cout << "using default setup file" << endl;
     }
@@ -116,7 +124,48 @@ int main(int argc, char *argv[])
     headerFile << "#ifndef " << outFileName << "_H\n"
                << "#define " << outFileName << "_H\n\n";
 
-    generateFromJson();
+    if (useCSV)
+    {
+        string pinName, pinNumber, pinMode, boardName;
+
+        getline(setupFile, boardName);
+        (boardName == "uno") ? boardName = "UNO" : boardName = "MEGA";
+        while (getline(setupFile, pinName, ','))
+        {
+            getline(setupFile, pinNumber, ',');
+            getline(setupFile, pinMode);
+            for (auto const &_pinNumber : configJson[boardName].getMemberNames())
+            {
+                if (pinNumber == _pinNumber)
+                {
+                    replace(pinName.begin(), pinName.end(), ' ', '_');
+                    replace(pinName.begin(), pinName.end(), '/', '_');
+                    char pinNameFormated[pinName.length()];
+                    removeAccents(pinName, pinNameFormated);
+
+                    headerFile << "#define " << pinNameFormated << "_ddr " << configJson[boardName][pinNumber]["ddr"].asString() << endl;
+                    headerFile << "#define " << pinNameFormated << "_wPort " << configJson[boardName][pinNumber]["wPort"].asString() << endl;
+                    headerFile << "#define " << pinNameFormated << "_rPort " << configJson[boardName][pinNumber]["rPort"].asString() << endl;
+                    headerFile << "#define " << pinNameFormated << "_bit " << configJson[boardName][pinNumber]["bit"].asString() << "\n\n";
+
+                    if (generateCfile)
+                    {
+                        if (pinMode == "output")
+                            codeFile << "SetBit(" << pinNameFormated << "_ddr, " << pinNameFormated << "_bit) // output\n\n";
+                        if (pinMode == "input")
+                            codeFile << "ClrBit(" << pinNameFormated << "_ddr, " << pinNameFormated << "_bit) // input\n\n";
+                        if (pinMode == "inputPullup")
+                        {
+                            codeFile << "ClrBit(" << pinNameFormated << "_ddr, " << pinNameFormated << "_bit) // input\n";
+                            codeFile << "SetBit(" << pinNameFormated << "_wPort, " << pinNameFormated << "_bit) // pullup\n\n";
+                        }
+                    }
+                }
+            }
+        }
+    }
+    else
+        generateFromJson();
 
     headerFile << macros;
     if (generateCfile)
@@ -136,7 +185,7 @@ int main(int argc, char *argv[])
 
 void generateFromJson()
 {
-    string pinName, boardName = setupJson["Board"].asString();
+    boardName = setupJson["Board"].asString();
     for (auto const &pinNumber : setupJson["Connections"].getMemberNames())
     {
         for (auto const &_pinNumber : configJson[boardName].getMemberNames())
