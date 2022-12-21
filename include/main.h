@@ -24,20 +24,16 @@ uint8_t externConfig,
     generateCfile,
     useCSV;
 
-string pinName, pinNumber, pinMode, boardName;
-
-string outFileName,
-    arg_c,
-    arg_i,
-    arg_o;
+string pinName, pinNumber, pinMode, boardName,
+    arg_c, arg_i, arg_o,
+    outFileName;
 
 map<string, char> specialCharacters;
 
+void generateFromCSV();
 void generateFromJson();
-
 void removeAccents(string str, char *out);
-
-void startMap();
+void initCharactersMap();
 
 int main(int argc, char *argv[]);
 

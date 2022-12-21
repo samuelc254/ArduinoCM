@@ -1,4 +1,5 @@
-board,uno
+board,UNO
 motor,13,output
 encoderA,2,inputPullup
 encoderB,3,inputPullup
+sensor,A0,input
